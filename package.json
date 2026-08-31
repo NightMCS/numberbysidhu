@@ -1,0 +1,9 @@
+{
+  "name": "RAHUL KD",
+  "version": "1.0.0",
+  "description": "Custom API formatter",
+  "main": "api/index.js",
+  "scripts": {
+    "start": "node api/index.js"
+  }
+}

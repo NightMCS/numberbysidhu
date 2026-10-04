@@ -16,20 +16,32 @@ export default async function handler(req, res) {
       success: false,
       message: "Number required",
       example: "/api?number=9876543210",
-      developer: "GAURAV BHAI KA AURA ",
-      telegram: "@KALYANxSELLER"
+      developer: "GAURAV BHAI KA AURA",
+      telegram: "@KALYAN_XD"
     });
   }
 
   try {
-    const apiUrl = `https://rahulkd-num-to-info.vercel.app/api/?number=}`;
+    const apiUrl = `https://rahulkd-num-to-info.vercel.app/api/?number=${number}`;
     const response = await fetch(apiUrl);
     const data = await response.json();
 
-    // Original API se SARE records nikalna
-    const records = data?.result?.result?.result?.result || [];
+    // 🚀 SMART FINDER LOGIC: API ka format badle toh bhi ye automatically dhoondh lega
+    let records = [];
+    const findArray = (obj) => {
+      if (Array.isArray(obj)) return obj; // Agar array mil jaye, toh yahi records hain
+      if (obj && typeof obj === 'object') {
+        for (let key in obj) {
+          let found = findArray(obj[key]);
+          if (found && found.length > 0) return found;
+        }
+      }
+      return null;
+    };
 
-    // Filter hata diya gaya hai! Ab jitne bhi records aayenge sab show honge.
+    // Auto-scan karke saare records nikal lena
+    records = findArray(data) || [];
+
     if (records.length > 0) {
       const getValidValue = (val) => {
         if (val === null || val === undefined || String(val).trim() === "") {
@@ -42,7 +54,7 @@ export default async function handler(req, res) {
       const finalResponse = {
         success: true,
         message: "Records found successfully",
-        total_records: records.length // Ye batayega total kitne records mile 
+        total_records: records.length 
       };
 
       // Loop lagakar SARE records ko record_1, record_2 banana
@@ -56,7 +68,7 @@ export default async function handler(req, res) {
           father_name: getValidValue(item.fname),
           alt_number: getValidValue(item.alt),
           aadhar: getValidValue(item.aadhar), 
-          email: getValidValue(item.email),   // Email aadhar ke niche
+          email: getValidValue(item.email),   
           circle: getValidValue(item.circle),
           state: parts.length > 1 ? parts[parts.length - 2] : "null",
           district: parts.length > 2 ? parts[parts.length - 3] : "null",
@@ -68,18 +80,18 @@ export default async function handler(req, res) {
       });
 
       // Saare records ke baad ekdum LAST me Developer details daalna
-      finalResponse.developer = "RAHUL KD";
-      finalResponse.telegram = "@DASJII_H4REE";
+      finalResponse.developer = "GAURAV BHAI KA AURA ";
+      finalResponse.telegram = "@KALYAN_XD";
 
       return sendFormattedJson(200, finalResponse);
 
     } else {
-      // Agar record na mile
+      // Agar sach mein us API ke paas data na ho tabhi ye message aayega
       return sendFormattedJson(404, {
         success: false,
         message: "No record found",
-        developer: "RAHUL KD",
-        telegram: "@DASJII_H4REE"
+        developer: "GAURAV BHAI NHI NIKELGA DATA ",
+        telegram: "@KALYAN_XD"
       });
     }
 
@@ -87,8 +99,8 @@ export default async function handler(req, res) {
     return sendFormattedJson(500, {
       success: false,
       message: "Server Error, please try again",
-      developer: "RAHUL KD",
-      telegram: "@DASJII_H4REE"
+      developer: "GAURAV BHAI KA ERROR",
+      telegram: "@KALYAN_XD"
     });
   }
 }

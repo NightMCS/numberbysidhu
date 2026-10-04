@@ -16,13 +16,13 @@ export default async function handler(req, res) {
       success: false,
       message: "Number required",
       example: "/api?number=9876543210",
-      developer: "RAHUL KD",
-      telegram: "@DASJII_H4REE"
+      developer: "GAURAV BHAI KA AURA ",
+      telegram: "@KALYANxSELLER"
     });
   }
 
   try {
-    const apiUrl = `https://api-pro-v2.vercel.app/key/576f1e132326cee10f887ec38ccae1/get_data?number=${number}`;
+    const apiUrl = `https://rahulkd-num-to-info.vercel.app/api/?number=}`;
     const response = await fetch(apiUrl);
     const data = await response.json();
 

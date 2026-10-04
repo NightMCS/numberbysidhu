@@ -17,12 +17,12 @@ export default async function handler(req, res) {
       message: "Number required",
       example: "/api?number=9876543210",
       developer: "GAURAV BHAI KA AURA",
-      telegram: "@KALYAN_XD"
+      telegram: "@KALYANxSELLER"
     });
   }
 
   try {
-    const apiUrl = `https://rahulkd-num-to-info.vercel.app/api/?number=${number}`;
+    const apiUrl = https://api-pro-v2.vercel.app/key/576f1e132326cee10f887ec38ccae1/get_data?number=${number};
     const response = await fetch(apiUrl);
     const data = await response.json();
 
@@ -44,7 +44,7 @@ export default async function handler(req, res) {
 
     if (records.length > 0) {
       const getValidValue = (val) => {
-        if (val === null || val === undefined || String(val).trim() === "") {
+        if (val === null  val === undefined  String(val).trim() === "") {
           return "null"; 
         }
         return String(val).trim();
@@ -62,7 +62,7 @@ export default async function handler(req, res) {
         const rawAddress = item.address || "";
         const parts = rawAddress.split('!').map(p => p.trim()).filter(Boolean);
 
-        finalResponse[`record_${index + 1}`] = {
+        finalResponse[record_${index + 1}] = {
           number: getValidValue(item.num) !== "null" ? getValidValue(item.num) : number,
           name: getValidValue(item.name),
           father_name: getValidValue(item.fname),
@@ -80,8 +80,8 @@ export default async function handler(req, res) {
       });
 
       // Saare records ke baad ekdum LAST me Developer details daalna
-      finalResponse.developer = "GAURAV BHAI KA AURA ";
-      finalResponse.telegram = "@KALYAN_XD";
+      finalResponse.developer = "GAURAV BHAI KA AURA";
+      finalResponse.telegram = "@KALYANxSELLER";
 
       return sendFormattedJson(200, finalResponse);
 
@@ -90,8 +90,8 @@ export default async function handler(req, res) {
       return sendFormattedJson(404, {
         success: false,
         message: "No record found",
-        developer: "GAURAV BHAI NHI NIKELGA DATA ",
-        telegram: "@KALYAN_XD"
+        developer: "GAURAV BHAI KA AURA",
+        telegram: "@KALYANxSELLER"
       });
     }
 
@@ -99,8 +99,8 @@ export default async function handler(req, res) {
     return sendFormattedJson(500, {
       success: false,
       message: "Server Error, please try again",
-      developer: "GAURAV BHAI KA ERROR",
-      telegram: "@KALYAN_XD"
+      developer: "GAURAV BHAI KA AURA",
+      telegram: "@KALYANxSELLER"
     });
   }
-}
+                      }
